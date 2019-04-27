@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Travel app</title>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body></body>
+  <body>
+    <main class="container">
+      <h1>Travel app</h1>
+      <div class="flight-results">
+        <span class="flights-to"></span>
+        <span class="flights-from"></span>
+        <form action="" id="flight-form" method="">
+          <fieldset name="flight-info">
+            <legend for="flights-from">Flying from:</legend>
+            <input type="text" placeholder="PHL" />
+            <legend for="flights-to">Flying to:</legend>
+            <input type="text" placeholder="YVR" />
+          </fieldset>
+          <div class="returned-flight-results">returned from request</div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </main>
+    <script
+      src="https://code.jquery.com/jquery-3.4.0.js"
+      integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/index.js"></script>
+  </body>
 </html>
