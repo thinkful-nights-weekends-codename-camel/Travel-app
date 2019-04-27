@@ -13,7 +13,9 @@ function getSessionId() {
     method: "POST",
     headers: new Headers({
       "X-RapidAPI-Key": skyScannerApiKey,
-      "X-RapidAPI-Host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+      "X-RapidAPI-Host":
+        "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "Content-Type": "application/x-www-form-urlencoded"
     })
   };
   fetch(url, options)
