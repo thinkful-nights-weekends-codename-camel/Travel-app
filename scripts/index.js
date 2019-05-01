@@ -2,7 +2,7 @@ let session = "";
 const skyScannerApiKey = "5893fbc347mshff1a803ba0f0e96p17e955jsn4e5d5e99ecad";
 const weatherApiKey = "";
 const sendParams = [
-  "inboundDate=2019-05-10",
+  "inboundDate=2019-05-20",
   "cabinClass=business",
   "cabinClass=business",
   "children=0",
@@ -12,7 +12,7 @@ const sendParams = [
   "locale=en-US",
   "originPlace=PHL-sky",
   "destinationPlace=YVR-sky",
-  "outboundDate=2019-05-01",
+  "outboundDate=2019-05-10",
   "adults=1"
 ];
 function getLocationString(sessionLocation) {
@@ -36,21 +36,24 @@ function grabSessionId() {
   };
   fetch(url, options).then(response => {
     const sessionId = getLocationString(response.headers.get("location"));
-    return grabSessionId(sessionId);
+    getFlightResults(sessionId);
   });
   // .then(responseJson => console.log(responseJson)) // Change this to extract the session ID
   // .catch(error => alert(error.message));
   // return sessionId;
 }
 
-function getFlightResults(sessionId) {
-  const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0/${sessionId}`;
+https: function getFlightResults(sessionId) {
+  const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionId}?pageIndex=0&pageSize=10`;
   const options = {
     headers: new Headers({
-      "X-RapidAPI-Key": skyScannerApiKey
+      "X-RapidAPI-Key": skyScannerApiKey,
+      "X-RapidAPI-Host":
+        "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "Content-Type": "application/x-www-form-urlencoded"
     })
   };
-  return fetch(url, options)
+  fetch(url, options)
     .then(response => response.json())
     .then(responseJson => displayResults(responseJson))
     .catch(error => alert(error.message));
@@ -59,8 +62,8 @@ function getFlightResults(sessionId) {
 function displayResults(responseJson) {
   console.log(responseJson);
 }
-
-grabSessionId();
+const id = grabSessionId();
+grabSessionId(id);
 // getFlightResults(session);
 // "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/${sessionId}?pageIndex=0&pageSize=10")
 // responseJson.location gives big location feed that to a regEx
